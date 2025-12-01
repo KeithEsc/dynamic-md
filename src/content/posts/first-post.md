@@ -1,6 +1,7 @@
 ---
 title: The First Dynamically Created Page
 layout: post
+date: 2025-12-01
 description: This page proves that dynamic routing works!
 image: /files/gdf46MHtIy.png
 ---
