@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+// 1. Define the type of the expected prop for safety and autocompletion
+// Replace 'posts' with your collection name if it's different
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+// 2. Destructure the prop
+const { post } = Astro.props;
+
+// 3. Access the frontmatter (YAML) properties through `post.data`
+const { title, description, date, author } = post.data;
+
+// 4. Determine the URL for the card using `post.slug`
+const postUrl = `/posts/${post.slug}/`;
+
+// Format the date for display
+const formattedDate = new Date(date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+---
+
+<a href={postUrl} class="post-card-link">
+  <div class="post-card">
+    <h3 class="post-card-title">{title}</h3>
+    <p class="post-card-description">{description}</p>
+    <div class="post-card-meta">
+      <span>By: {author}</span>
+      <span>|</span>
+      <time datetime={date.toISOString()}>{formattedDate}</time>
+    </div>
+  </div>
+</a>
+
+<style>
+  /* Basic styling for the card */
+  .post-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    margin-bottom: 1.5rem;
+  }
+  .post-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  .post-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  .post-card-title {
+    margin-top: 0;
+    font-size: 1.5rem;
+  }
+  .post-card-meta {
+    font-size: 0.875rem;
+    color: #666;
+    display: flex;
+    gap: 0.5rem;
+  }
+</style>

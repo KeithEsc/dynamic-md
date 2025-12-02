@@ -28,7 +28,7 @@ const { Content } = await post.render();
 
 const {
   post: {
-    data: { title, pubDate },
+    data: { title, date },
     body,
   },
 } = Astro.props;
@@ -36,7 +36,7 @@ const {
 
 <BaseLayout title={post.data.title}>
   <h1>{post.data.title}</h1>
-  <p>Published: {pubDate.toLocaleDateString("en-US", { timeZone: "UTC" })}</p>
+  <p>Published: {date.toLocaleDateString("en-US", { timeZone: "UTC" })}</p>
   <hr />
   <Content />
 </BaseLayout>
