@@ -25,14 +25,16 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 ---
 
 <a href={postUrl} class="post-card-link">
-  <div class="post-card">
-    <h3 class="post-card-title">{title}</h3>
-    <p class="post-card-description">{description}</p>
+  <div class="post-card flex flex-col gap-1">
+    <h3 class="post-card-title text-xl font-medium hover:text-neutral-400">
+      {title}
+    </h3>
     <div class="post-card-meta">
       <span>By: {author}</span>
       <span>|</span>
       <time datetime={date.toISOString()}>{formattedDate}</time>
     </div>
+    <p class="post-card-description">{description}</p>
   </div>
 </a>
 
@@ -45,18 +47,12 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
     margin-bottom: 1.5rem;
   }
   .post-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
     transition: box-shadow 0.2s ease-in-out;
+    margin-block: 1rem;
   }
   .post-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
-  .post-card-title {
-    margin-top: 0;
-    font-size: 1.5rem;
-  }
+
   .post-card-meta {
     font-size: 0.875rem;
     color: #666;

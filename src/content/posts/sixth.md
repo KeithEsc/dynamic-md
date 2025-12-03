@@ -1,11 +1,9 @@
 ---
 title: Sixth Post
-layout: post
+
 date: 2025-12-02
 description: This is the sixth post
 ---
-# Una iam membraque ad
-
 ## Humus potero et de
 
 Lorem markdownum. Modo curru, fugaeque, vada dant, movit prior! Patrii claudit

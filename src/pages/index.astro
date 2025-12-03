@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import PostCard from "../components/PostCard.astro";
+import BaseLayout from "../layouts/Layout.astro";
+
+const POSTS_TO_SHOW = 4;
+
+const allPosts = await getCollection("posts");
+
+allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const recentPosts = allPosts.slice(0, POSTS_TO_SHOW);
+---
+
+<BaseLayout title="Welcome to My Site">
+  <main class="px-2">
+    <section
+      id="hero"
+      class="hero-section prose prose-invert max-w-3xl mx-auto mb-4 p-1"
+    >
+      <hr />
+      <h1>Welcome</h1>
+      <p>
+        This is a demo for using Pages CMS with Astro. Uses <a
+          href="https://docs.astro.build/en/guides/content-collections/"
+          >content collections</a
+        > and dynamic routing to serve content created using Pages CMS. The goal
+        of this setup is to have a free, open source, user-friendly way for anyone,
+        regardless of technical knowledge, to create content on an Astro site.
+      </p>
+      <p>Read the blog posts or check README for more info.</p>
+      <hr />
+    </section>
+
+    <section id="recent" class="recent max-w-3xl mx-auto p-1">
+      <h2 class="text-2xl font-semibold">Recent Posts</h2>
+
+      <div class="posts-grid">
+        {recentPosts.map((post) => <PostCard post={post} />)}
+      </div>
+
+      <div class="view-all-wrapper">
+        <a href="/posts" class="view-all-button hover:text-neutral-400"
+          >All Posts &rarr;</a
+        >
+      </div>
+    </section>
+  </main>
+</BaseLayout>

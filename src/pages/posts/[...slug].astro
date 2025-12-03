@@ -35,8 +35,12 @@ const {
 ---
 
 <BaseLayout title={post.data.title}>
-  <h1>{post.data.title}</h1>
-  <p>Published: {date.toLocaleDateString("en-US", { timeZone: "UTC" })}</p>
-  <hr />
-  <Content />
+  <article class="prose prose-invert max-w-3xl mx-auto">
+    <hr />
+    <h1>{post.data.title}</h1>
+    <p>Published: {date.toLocaleDateString("en-US", { timeZone: "UTC" })}</p>
+    <hr />
+
+    <Content />
+  </article>
 </BaseLayout>

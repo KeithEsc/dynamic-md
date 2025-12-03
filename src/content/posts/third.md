@@ -1,11 +1,9 @@
 ---
 title: Third Post
-layout: post
+
 date: 2025-11-29
 description: This is the third post
 ---
-# Erat admissum ferit causa
-
 ## Diva pater pepulere at
 
 Lorem markdownum fata, et peto stimuloque esse: sic deum dare notus? Et recepit

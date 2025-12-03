@@ -4,8 +4,6 @@ layout: post
 date: 2025-11-28
 description: This is the second post
 ---
-# Sine duo effugies abstulit
-
 ## Coetu decipit
 
 Lorem markdownum inritat iste annum incertas inquit: validoque ferebant et

@@ -1,10 +1,10 @@
 ---
 title: Fifth Post
-layout: post
+
 date: 2025-12-01
 description: This is the fifth post
 ---
-# Ablata rata ipse inminet
+## Ablata rata ipse inminet
 
 Lorem **markdownum senis**, circumvolat quinque corpus aure videndi, omnes est
 *genialis certamina* hanc Cretaeas. Et ferrum sagitta et decidere quae heu

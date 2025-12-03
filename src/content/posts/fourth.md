@@ -4,8 +4,6 @@ layout: post
 date: 2025-11-30
 description: This is the fourth post
 ---
-# Te moenia Calaisque primum
-
 ## Inaequalis gratia
 
 ### Quoque de hos

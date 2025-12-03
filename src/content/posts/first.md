@@ -4,8 +4,6 @@ layout: post
 date: 2025-11-27
 description: This page proves that dynamic routing works!
 ---
-# Populo capiam
-
 ## Nocens depressaque sorores verbenis
 
 Lorem markdownum forma longa obstet velamina et modo inmedicabile obscuraque!
