@@ -1,48 +1,37 @@
 ---
 import { getCollection } from "astro:content";
-import PostCard from "../../components/PostCard.astro"; // Your component
+import PostCard from "../../components/PostCard.astro";
 import Layout from "../../layouts/Layout.astro";
 
-// Keep this outside for use in the rendering part of the component
+// FIX: Keep this outside for use in the rendering part of the component
 const POSTS_PER_PAGE = 4;
 
-// 1. Define the constant INSIDE getStaticPaths for reliable scoping
 export async function getStaticPaths({ paginate }) {
-  // ✅ FIX: Redefine the constant locally to ensure scope (or use the one from above)
-  // For maximum robustness, you can ensure it's here:
-  const POSTS_PER_PAGE_BUILD = 4; // Using a different name to be explicit
+  const POSTS_PER_PAGE_BUILD = 4;
 
   const allPosts = await getCollection("posts");
 
-  // Sort the posts
   allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-  // Use the reliable local constant for the build process
   return paginate(allPosts, { pageSize: POSTS_PER_PAGE_BUILD });
 }
 
-// 2. The rest of the component script uses the 'page' prop from paginate
 const { page } = Astro.props;
 ---
 
 <Layout>
   <section class="max-w-3xl mx-auto p-2">
     <h1>Latest Posts (Page {page.currentPage} of {page.lastPage})</h1>
-    {/* 3. Loop over the paginated data for the current page */}
     {page.data.map((post) => <PostCard post={post} />)}
   </section>
 
-  {/* 4. Navigation using page.url helpers */}
   <nav aria-label="Pagination" class="pagination-nav max-w-3xl mx-auto p-2">
-    {/* ◀️ PREVIOUS Link (Older content) */}
-    {/* Only show if a previous page exists (i.e., not on Page 1) */}
     {
       page.url.prev ? (
         <a href={page.url.prev} class="prev-link">
           &larr; Newer Posts
         </a>
       ) : (
-        // Optional: Display empty space or descriptive text on Page 1
         <span class="pagination-placeholder" />
       )
     }
@@ -51,15 +40,12 @@ const { page } = Astro.props;
       Page {page.currentPage} of {page.lastPage}
     </span>
 
-    {/* ▶️ NEXT Link (Newer content) */}
-    {/* Only show if a next page exists (i.e., not on the last page) */}
     {
       page.url.next ? (
         <a href={page.url.next} class="next-link">
           Older Posts &rarr;
         </a>
       ) : (
-        // Optional: Display empty space or descriptive text on the last page
         <span class="pagination-placeholder" />
       )
     }
@@ -67,7 +53,6 @@ const { page } = Astro.props;
 </Layout>
 
 <style>
-  /* Basic example CSS to keep things aligned */
   .pagination-nav {
     display: flex;
     justify-content: space-between;
@@ -75,6 +60,6 @@ const { page } = Astro.props;
     margin-top: 2rem;
   }
   .pagination-placeholder {
-    width: 100px; /* Adjust to match link width for alignment */
+    width: 100px;
   }
 </style>

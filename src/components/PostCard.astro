@@ -1,22 +1,16 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-// 1. Define the type of the expected prop for safety and autocompletion
-// Replace 'posts' with your collection name if it's different
 interface Props {
   post: CollectionEntry<"posts">;
 }
 
-// 2. Destructure the prop
 const { post } = Astro.props;
 
-// 3. Access the frontmatter (YAML) properties through `post.data`
 const { title, description, date, author } = post.data;
 
-// 4. Determine the URL for the card using `post.slug`
 const postUrl = `/posts/${post.slug}/`;
 
-// Format the date for display
 const formattedDate = new Date(date).toLocaleDateString("en-US", {
   year: "numeric",
   month: "short",
@@ -39,7 +33,6 @@ const formattedDate = new Date(date).toLocaleDateString("en-US", {
 </a>
 
 <style>
-  /* Basic styling for the card */
   .post-card-link {
     text-decoration: none;
     color: inherit;

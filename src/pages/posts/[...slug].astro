@@ -1,29 +1,20 @@
 ---
-// Import the necessary utilities from Astro's content module
 import { getCollection } from "astro:content";
 
-// Import your existing basic layout
-import BaseLayout from "../../layouts/Layout.astro"; // Adjust path if needed
+import BaseLayout from "../../layouts/Layout.astro";
 
-// 1. getStaticPaths: Generates a route for every Markdown file
 export async function getStaticPaths() {
-  // Fetch all entries from the 'posts' collection
   const posts = await getCollection("posts");
 
-  // Map the collection data to the format Astro expects for routing
   return posts.map((post) => ({
-    // 'slug' is the URL path (e.g., /posts/first-post)
     params: { slug: post.slug },
-    // 'props' is the data passed to the component for rendering
+
     props: { post },
   }));
 }
 
-// 2. Get the post data for the current page
 const { post } = Astro.props;
 
-// 3. Render the Markdown content into a component
-// 'Content' is a component you can render inside your layout
 const { Content } = await post.render();
 
 const {
@@ -35,7 +26,7 @@ const {
 ---
 
 <BaseLayout title={post.data.title}>
-  <article class="prose prose-invert max-w-3xl mx-auto">
+  <article class="prose prose-invert max-w-3xl mx-auto p-2">
     <hr />
     <h1>{post.data.title}</h1>
     <p>Published: {date.toLocaleDateString("en-US", { timeZone: "UTC" })}</p>
